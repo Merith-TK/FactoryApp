@@ -162,15 +162,75 @@ A cycle of `ticks` ticks must pass with inputs available before output is produc
 
 ---
 
-## Power System (Future)
+## Power System (Core Mechanic)
 
-- Power is produced by generators, consumed by machines
-- Power grid is a separate graph (nodes = machines/generators, edges = power lines)
-- Machines without power: stall (go idle)
-- Power balance calculated per tick
-- Power lines drawn by player in Sketch mode (separate tool or auto-connect)
+Power is a first-class simulation system, not optional.
 
-**Status: Deferred to post-MVP.**
+### Power Grid
+
+- Generators produce power (in units/tick)
+- Machines consume power (in units/tick)
+- The grid is a separate graph: nodes = machines/generators, edges = power lines
+- Per tick: sum all generation, subtract all consumption, broadcast state
+- Machines without sufficient grid power: **stall** (go idle, no production)
+- Power lines are drawn by the player in Sketch mode (same tool as conveyors, separate layer)
+
+### Power Data Structures
+
+```
+PowerNode
+  id: UUID
+  machine_id: UUID     # machine or generator this node belongs to
+  role: producer | consumer | both
+  power_production: float   # units/tick (generators)
+  power_consumption: float  # units/tick (machines)
+  connected_lines: [UUID]
+
+PowerLine
+  id: UUID
+  node_a: UUID
+  node_b: UUID
+  capacity: float      # max power transfer per tick
+```
+
+### Drone Power Interaction
+
+See [08-player-drone.md](./08-player-drone.md) for full drone power rules.
+
+In simulation terms:
+- Drone has `internal_power: float` that drains each tick while active
+- If drone is within range of a powered structure: `grid_connected: bool = true`
+- Grid connection replenishes drone power and unlocks boosted stats
+- Drone power state is evaluated each tick based on proximity to powered nodes
+
+```
+Drone
+  ...existing fields...
+  internal_power: float       # 0.0 to internal_power_max
+  internal_power_max: float
+  grid_connected: bool        # true if near a powered structure this tick
+  power_mode: internal | grid # determines active stat tier
+```
+
+### Machine Definition — Power Fields
+
+Added to machine JSON:
+```json
+{
+  "id": "smelter",
+  "power_consumption": 10,
+  "power_node": { "role": "consumer" }
+}
+```
+
+Generators:
+```json
+{
+  "id": "coal_generator",
+  "power_production": 50,
+  "power_node": { "role": "producer" }
+}
+```
 
 ---
 
@@ -194,10 +254,18 @@ TickStats
   per_machine:
     throughput_in: float
     throughput_out: float
-    state: running | idle | starved | blocked
+    state: running | idle | starved | blocked | unpowered
   per_conveyor:
     flow_rate: float       # items/sec
     utilization: float     # 0.0 to 1.0
+  per_power_node:
+    production: float
+    consumption: float
+    satisfied: bool        # false = brownout in this node's grid island
+  drone:
+    power_mode: internal | grid
+    internal_power: float
+    grid_connected: bool
 ```
 
 ---
@@ -209,10 +277,15 @@ World (Node2D)
   SimulationCore (Node)     ← pure logic, no rendering
     MachineManager
     ConveyorManager
+    PowerManager
+    DroneManager
+    HazardManager
     TickClock
   WorldRenderer (Node2D)    ← reads from SimulationCore, draws
     MachineSprites
     ConveyorPaths
+    PowerLineRenderer
+    DroneSprites
     AnalysisOverlay
   InputHandler (Node)       ← processes stylus events, calls SimulationCore
 ```

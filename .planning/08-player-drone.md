@@ -20,6 +20,46 @@ You assign tasks. The drone executes them.
 
 ---
 
+## Drone Power System
+
+The drone has its **own internal power source** — it always functions to some degree. However, being connected to the factory power grid unlocks boosted capabilities.
+
+### Two Power Modes
+
+| Mode | Condition | Effect |
+|---|---|---|
+| **Internal** | No powered structure in range | Baseline stats — limited range, slower movement, slower build |
+| **Grid-Connected** | Within range of a powered structure | Boosted stats — larger build range, faster movement, faster build speed |
+
+This creates an organic incentive: **extend your power grid outward as you expand**, so your drone is always boosted when working at the frontier.
+
+### Drone Power Stats
+
+| Stat | Internal Mode | Grid-Connected Mode |
+|---|---|---|
+| Build range radius | Small | Large |
+| Movement speed | Normal | Fast |
+| Construction speed | Normal | Fast |
+| Gather/deposit speed | Normal | Fast |
+
+*(Exact values to be tuned during prototyping)*
+
+### Internal Power Drain
+
+- Drone's internal power drains while active (moving, building)
+- If internal power depletes and drone is not grid-connected: drone enters **low-power mode** (reduced speed, no building)
+- Drone recharges internal power when idle near a powered structure
+- Drone **never stops working entirely** — low-power mode is a penalty, not a dead stop
+
+### Grid Connection Detection
+
+Each tick:
+1. Check if any powered `PowerNode` is within the drone's connection radius
+2. If yes → `grid_connected = true`, stats use boosted tier, internal power recharges
+3. If no → `grid_connected = false`, stats use internal tier, internal power drains
+
+Connection radius is a separate (larger) value than build range — you don't need to be right next to a machine, just in the rough area of powered infrastructure.
+
 ## Drone Actions
 
 ### Physical (Proximity Required)
@@ -140,6 +180,7 @@ Examples of hazard types (moddable):
                     │         DRONE              │
                     │  carries items, executes   │
                     │  physical tasks            │
+                    │  internal power always on  │
                     └──────────┬────────────────┘
                                │ must be in range for:
                ┌───────────────┼───────────────┐
@@ -147,7 +188,13 @@ Examples of hazard types (moddable):
          Construct          Gather           Deposit
           building          items            items
 
-  Remote (no range):
+  Near powered structure → Grid-Connected mode:
+    - Faster movement
+    - Larger build range
+    - Faster construction
+    - Internal power recharges
+
+  Remote (no range needed):
     - Configure recipe
     - Set filters
     - View stats

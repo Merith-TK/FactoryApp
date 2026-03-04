@@ -28,15 +28,18 @@ Prove the core loop is fun and working.
 - [ ] Drone inventory management (gather, deposit, carry limit)
 - [ ] Proximity enforcement (drone must be in range to construct/gather/deposit)
 - [ ] Remote configuration (machine settings accessible from map view regardless of drone position)
+- [ ] **Power grid** — generators, power lines (drawn in sketch mode), machines stall without power
+- [ ] **Drone power modes** — internal (baseline) vs grid-connected (boosted stats)
+- [ ] Drone internal power drain + recharge near powered structures
 - [ ] Hazard zones (block drone navigation and production until cleared)
-- [ ] Analysis overlay (flow rates, bottlenecks)
+- [ ] Analysis overlay (flow rates, bottlenecks, power network)
 - [ ] Grid snap toggle
 - [ ] Erase mode
 - [ ] Context radial menu (delete, inspect, configure)
 - [ ] Proper port validation (output → input only)
 - [ ] Auto-snap conveyor to ports
 
-**Definition of done:** A simple production chain (ore → ingot → plate) is buildable by assigning tasks to a single drone, using only a stylus.
+**Definition of done:** A simple production chain (ore → ingot → plate) is buildable by assigning tasks to a single drone, using only a stylus. Power grid must be extended for drone to work at full speed.
 
 ---
 
@@ -90,3 +93,4 @@ Prove the core loop is fun and working.
 - 3D or isometric view
 - Combat (drones face hazards but cannot die — hazards are gates, not threats)
 - Custom conveyor visual routing (bezier stays, or auto-straighten TBD)
+- Power grid islands / circuit breaker logic (basic grid only for MVP)
