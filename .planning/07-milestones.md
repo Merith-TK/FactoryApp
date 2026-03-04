@@ -32,6 +32,7 @@ Prove the core loop is fun and working.
 - [ ] **Drone power modes** — internal (baseline) vs grid-connected (boosted stats)
 - [ ] Drone internal power drain + recharge near powered structures
 - [ ] Hazard zones (block drone navigation and production until cleared)
+- [ ] **Resource deposits** — seed-placed infinite deposits, harvester machine
 - [ ] Analysis overlay (flow rates, bottlenecks, power network)
 - [ ] Grid snap toggle
 - [ ] Erase mode
@@ -39,7 +40,7 @@ Prove the core loop is fun and working.
 - [ ] Proper port validation (output → input only)
 - [ ] Auto-snap conveyor to ports
 
-**Definition of done:** A simple production chain (ore → ingot → plate) is buildable by assigning tasks to a single drone, using only a stylus. Power grid must be extended for drone to work at full speed.
+**Definition of done:** A simple ore → ingot → plate production chain is buildable from a live resource deposit, powered by a generator, using only a stylus.
 
 ---
 
@@ -47,7 +48,9 @@ Prove the core loop is fun and working.
 
 - [ ] Data mod loading from `user://mods/`
 - [ ] `.pck` mod support
-- [ ] Power system (production, consumption, stall)
+- [ ] **Mission system** — game-driven production targets, mission definitions in JSON
+- [ ] **HUB milestone tech tree** — linear tier unlocks gated by mission completion
+- [ ] **Research Lab** — branching optional research, resource-fed, drone/logistics upgrades
 - [ ] Multiple save slots
 - [ ] Settings panel (snap options, tick rate, etc.)
 - [ ] Proper sprites and audio

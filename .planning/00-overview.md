@@ -56,6 +56,13 @@ Think: **engineering notebook meets Satisfactory.**
 | Drone focus system (one active at a time) | Planning |
 | Inventory system (drone carries items) | Planning |
 | Hazard zones (block navigation/production) | Planning |
+| Resource deposits (seed-based, infinite) | Planning |
+| Automated harvesters | Planning |
+| Production chains (ore → components → advanced) | Planning |
+| Mission system (game-driven production targets) | Planning |
+| Tech tree — HUB milestones (linear, main path) | Planning |
+| Tech tree — Research Lab (branching, optional) | Planning |
+| Power grid (generators, lines, machines) | Planning |
 | Local save (JSON) | Planning |
 | Server save (authoritative backend) | Planning |
 | Mod system (JSON + scripts) | Planning |
@@ -65,7 +72,14 @@ Think: **engineering notebook meets Satisfactory.**
 ## Related Planning Documents
 
 - [01-tech-stack.md](./01-tech-stack.md) — Engine, language, backend choices
+- [02-input-system.md](./02-input-system.md) — Stylus / S Pen input handling
+- [03-ux-design.md](./03-ux-design.md) — Interaction model, modes, UI approach
+- [04-simulation.md](./04-simulation.md) — Core simulation architecture
+- [05-save-system.md](./05-save-system.md) — Local and server save design
+- [06-modding.md](./06-modding.md) — Mod system design
+- [07-milestones.md](./07-milestones.md) — Roadmap and milestone checklist
 - [08-player-drone.md](./08-player-drone.md) — Construction drone system, inventory, tasks, hazards
+- [09-gameplay-loop.md](./09-gameplay-loop.md) — Resource flow, missions, tech tree, progression pacing
 - [02-input-system.md](./02-input-system.md) — Stylus / S Pen input handling
 - [03-ux-design.md](./03-ux-design.md) — Interaction model, modes, UI approach
 - [04-simulation.md](./04-simulation.md) — Core simulation architecture
