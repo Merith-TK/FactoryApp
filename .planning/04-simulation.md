@@ -60,15 +60,51 @@ Conveyor
   source_port: UUID    # must be an output port
   dest_port: UUID      # must be an input port
   capacity: float      # items per tick throughput cap
-  contents: Queue<Item>   # physical sim (Option A) OR throughput: float (Option B)
+  path: [Vector2]      # world-space points (spline or grid-aligned)
+  items: [ItemOnConveyor]
 ```
 
-### Item
+### ItemOnConveyor
 
 ```
-Item
+ItemOnConveyor
+  item_type: String
+  path_progress: float   # 0.0 (source) to 1.0 (destination)
+```
+
+### Construction Drone
+
+```
+Drone
   id: UUID
-  type: String         # references ItemDefinition
+  position: Vector2
+  inventory: {item_id: count}
+  inventory_capacity: int
+  task_queue: [Task]
+  state: idle | traveling | working | blocked
+  focused: bool             # true for the one active drone
+```
+
+### Task
+
+```
+Task
+  id: UUID
+  type: construct | demolish | gather | deposit | clear_hazard
+  target_position: Vector2
+  target_id: UUID | null    # machine or conveyor being acted on
+  required_items: {item_id: count}  # for construct tasks
+```
+
+### Hazard Zone
+
+```
+HazardZone
+  id: UUID
+  area: Rect2 | Polygon    # blocked region
+  type: String             # moddable hazard type
+  cleared: bool
+  clear_cost: {item_id: count} | null
 ```
 
 ---

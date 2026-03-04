@@ -39,7 +39,24 @@ Saves are pure state — fully reconstructible. No transient or frame-state data
       "id": "uuid",
       "source_port": "port_uuid",
       "dest_port": "port_uuid",
-      "capacity": 1.0
+      "capacity": 1.0,
+      "path": [[100.0, 200.0], [150.0, 200.0]]
+    }
+  ],
+  "drones": [
+    {
+      "id": "uuid",
+      "position": [80.0, 80.0],
+      "inventory": { "iron_ore": 10 },
+      "task_queue": []
+    }
+  ],
+  "hazard_zones": [
+    {
+      "id": "uuid",
+      "type": "obstruction",
+      "area": [[300.0, 300.0], [400.0, 400.0]],
+      "cleared": false
     }
   ],
   "power_nodes": []

@@ -11,19 +11,20 @@ Think: **engineering notebook meets Satisfactory.**
 ## Core Design Pillars
 
 1. **Stylus Native** — The S Pen (or any stylus) is the primary input device. Mouse/touch is secondary. No finger-sized buttons.
-2. **Sketch to Build** — You draw/sketch your factory onto the map. Conveyors are drawn as lines. Buildings are placed by tapping.
-3. **No Avatar** — No character. No walking. Pure top-down engineering view.
-4. **Minimal UI** — No toolbars. Mode switching via pen button or on-screen toggles. Radial menus for context actions.
-5. **Moddable** — JSON-defined machines/items, loadable `.pck` packs, scriptable behavior.
-6. **Offline First, Server Optional** — Works fully locally. Optional server-authoritative backend for cloud saves / multiplayer.
+2. **Sketch to Build** — You draw/sketch your factory onto the map. Conveyors are drawn as lines. Buildings are placed via drones.
+3. **Drone, Not Avatar** — You control one or more **construction drones**. No hand-holding a character. Assign tasks, drones execute. You focus one drone at a time.
+4. **Proximity Matters** — A drone must be physically near a building to construct, gather from, or deposit into it. Configuration and planning is remote.
+5. **Minimal UI** — No toolbars. Mode switching via pen button or on-screen toggles. Radial menus for context actions.
+6. **Moddable** — JSON-defined machines/items, loadable `.pck` packs, scriptable behavior.
+7. **Offline First, Server Optional** — Works fully locally. Optional server-authoritative backend for cloud saves / multiplayer.
 
 ---
 
 ## What This Game Is NOT
 
-- Not a Factorio clone (no character, no combat)
+- Not a Factorio clone in feel (no walking character, no combat — hazards exist but don't kill)
 - Not a touch-first mobile game
-- Not a character-with-tools simulator
+- Not a real-time action game
 - Not reliant on toolbar-heavy UI
 
 ---
@@ -49,6 +50,12 @@ Think: **engineering notebook meets Satisfactory.**
 | Machine placement (rotation + IO faces) | Planning |
 | Optional grid snap | Planning |
 | Analysis / diagnostic overlay | Planning |
+| Construction drone (player entity) | Planning |
+| Drone task assignment (auto-pathfinding) | Planning |
+| Multiple drones (mid-to-late unlock) | Planning |
+| Drone focus system (one active at a time) | Planning |
+| Inventory system (drone carries items) | Planning |
+| Hazard zones (block navigation/production) | Planning |
 | Local save (JSON) | Planning |
 | Server save (authoritative backend) | Planning |
 | Mod system (JSON + scripts) | Planning |
@@ -58,6 +65,7 @@ Think: **engineering notebook meets Satisfactory.**
 ## Related Planning Documents
 
 - [01-tech-stack.md](./01-tech-stack.md) — Engine, language, backend choices
+- [08-player-drone.md](./08-player-drone.md) — Construction drone system, inventory, tasks, hazards
 - [02-input-system.md](./02-input-system.md) — Stylus / S Pen input handling
 - [03-ux-design.md](./03-ux-design.md) — Interaction model, modes, UI approach
 - [04-simulation.md](./04-simulation.md) — Core simulation architecture

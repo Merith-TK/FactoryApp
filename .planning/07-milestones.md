@@ -8,12 +8,15 @@ Prove the core loop is fun and working.
 - [ ] Stylus input detected (position, button state)
 - [ ] Software toggle button (fallback)
 - [ ] Canvas panning and zooming
-- [ ] Place a machine (placeholder sprite) with rotation
+- [ ] Construction drone entity on the map (placeholder sprite)
+- [ ] Drone auto-pathfinds to assigned task location
+- [ ] Drone inventory (carries items)
+- [ ] Place a machine (placeholder sprite) with rotation — drone must be in range
 - [ ] Draw a conveyor line between two machines
 - [ ] Basic simulation tick (items move through conveyors)
 - [ ] Local save / load (JSON)
 
-**Definition of done:** Can place two machines, connect them with a conveyor, and watch items flow. Save and reload the state.
+**Definition of done:** Can assign a drone to construct two machines, connect them with a conveyor, watch items flow, and save/reload the state.
 
 ---
 
@@ -21,14 +24,19 @@ Prove the core loop is fun and working.
 
 - [ ] Multiple machine types loaded from JSON definitions
 - [ ] Multiple item types and recipes
+- [ ] Drone task queue UI (assign, view, cancel tasks)
+- [ ] Drone inventory management (gather, deposit, carry limit)
+- [ ] Proximity enforcement (drone must be in range to construct/gather/deposit)
+- [ ] Remote configuration (machine settings accessible from map view regardless of drone position)
+- [ ] Hazard zones (block drone navigation and production until cleared)
 - [ ] Analysis overlay (flow rates, bottlenecks)
 - [ ] Grid snap toggle
 - [ ] Erase mode
-- [ ] Context radial menu (delete, inspect)
+- [ ] Context radial menu (delete, inspect, configure)
 - [ ] Proper port validation (output → input only)
 - [ ] Auto-snap conveyor to ports
 
-**Definition of done:** A simple production chain (ore → ingot → plate) is buildable from scratch using only a stylus.
+**Definition of done:** A simple production chain (ore → ingot → plate) is buildable by assigning tasks to a single drone, using only a stylus.
 
 ---
 
@@ -40,6 +48,9 @@ Prove the core loop is fun and working.
 - [ ] Multiple save slots
 - [ ] Settings panel (snap options, tick rate, etc.)
 - [ ] Proper sprites and audio
+- [ ] Multiple drone support (unlock via progression)
+- [ ] Drone focus system (tap to switch, others continue task queues)
+- [ ] Hazard clearance tasks (assign drone to clear a zone)
 
 ---
 
@@ -77,6 +88,5 @@ Prove the core loop is fun and working.
 - Desktop port
 - In-game mod browser
 - 3D or isometric view
-- Character / avatar
-- Combat or threat systems
+- Combat (drones face hazards but cannot die — hazards are gates, not threats)
 - Custom conveyor visual routing (bezier stays, or auto-straighten TBD)
