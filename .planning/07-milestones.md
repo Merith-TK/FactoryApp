@@ -43,21 +43,31 @@ Prove the core loop is fun and working.
 
 ---
 
-## Milestone 3 — Server Save (Optional)
+## Milestone 3 — Cloud Sync (Server Save, Single User)
 
 - [ ] Go backend with WebSocket
+- [ ] Authentication / login system (protects save data from unauthorized access)
 - [ ] Server-authoritative simulation
-- [ ] Cloud save (single player, different devices)
+- [ ] Same save accessible from multiple personal devices
 - [ ] PostgreSQL persistence
+- [ ] Conflict resolution (last-writer-wins or tick-based)
 
 ---
 
-## Milestone 4 — Multiplayer (Future)
+## Milestone 4 — Co-op (Shared Factory)
 
-- [ ] Shared factory between players
-- [ ] Permission system (who can build/delete)
-- [ ] Delta sync optimized
-- [ ] SpacetimeDB evaluation revisited
+- [ ] Shared factory session between 2–4 players
+- [ ] Permission model (who can build/delete/reconfigure)
+- [ ] Delta sync optimized for multiple connected clients
+- [ ] Session invite system
+
+---
+
+## Milestone 5 — Public Worlds (Maybe)
+
+- [ ] Persistent servers others can discover and join
+- [ ] Role/permission tiers
+- [ ] SpacetimeDB re-evaluation at this stage
 
 ---
 

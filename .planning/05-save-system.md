@@ -2,14 +2,18 @@
 
 ## Overview
 
-Two save modes supported:
+Four save modes, implemented in priority order:
 
-| Mode | Description |
-|---|---|
-| **Local Save** | JSON file on device, fully offline, simulation runs locally |
-| **Server Save** | Server is source of truth, state synced from server, simulation authoritative |
+| Priority | Mode | Description |
+|---|---|---|
+| 1 | **Local Save** | JSON file on device, fully offline |
+| 2 | **Cloud Sync** | Same save across your own devices via login, server holds canonical state |
+| 3 | **Co-op** | Shared factory with friends (2–4 players) |
+| 4 | **Public Worlds** | Persistent servers others can join (maybe, post-MVP) |
 
-The same simulation core runs in both modes. The save format is identical.
+The same simulation core runs in all modes. The save format is identical.
+
+**Authentication is required for all server modes.** Login system ensures only authorized users can read or modify a save. No anonymous connections to save servers.
 
 ---
 

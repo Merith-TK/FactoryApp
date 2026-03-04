@@ -73,19 +73,20 @@ Item
 
 ---
 
-## Simulation Model — Throughput (Graph-Based, Recommended)
+## Simulation Model — Physical Items (Confirmed)
 
-Rather than simulating individual items moving through pipes, model conveyors as **edges with throughput capacity**.
+Each item is a real entity that travels along a conveyor path.
 
 Each tick:
-1. Each machine checks its input ports
-2. If enough input items available and output not blocked → start/continue processing
-3. On cycle complete → push output to output port buffer
-4. Conveyor propagates items from source buffer to dest buffer, limited by capacity
+1. Each item on a conveyor advances along its path by conveyor speed
+2. If item reaches end of conveyor → attempt to enter destination machine's input buffer
+3. If destination is full → item stops (conveyor backs up)
+4. Machine pulls from input buffer, processes over N ticks, deposits to output buffer
+5. Items in output buffer → enter outbound conveyor
 
-This scales to thousands of machines without per-entity simulation overhead.
+This is visually clear and intuitive: you see items moving.
 
-Visual items (moving along conveyors on screen) are **fake** — animated based on throughput rate, not actual positions. They are purely cosmetic.
+**Performance note:** This is heavier than throughput-graph simulation. Optimize with spatial bucketing or pooling if item counts become large. If performance degrades at scale, a hybrid (physical sim on visible conveyors, throughput for off-screen) can be introduced later.
 
 ---
 

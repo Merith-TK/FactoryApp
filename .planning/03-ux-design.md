@@ -32,16 +32,16 @@ The default mode. The stylus is a drawing instrument.
 
 | Stylus Action | Behavior |
 |---|---|
-| Drag | Draw conveyor path (bezier/polyline) |
+| Drag | Draw conveyor path (bezier/spline) |
 | Release near port | Auto-snap to port and connect |
-| Release in empty space | Freeform path, snaps to grid if enabled |
+| Release in empty space | Freeform spline (no snap) OR grid-aligned path (snap on) |
 | Button held + drag | Erase conveyor segments |
 | Hover | Preview path ghost |
 
-Conveyor lines:
-- Drawn as splines
-- Auto-resolve to straight segments on release (or stays curved — TBD)
-- Snap to connected ports when endpoint is within snap radius
+Conveyor lines — **context-dependent resolution:**
+- **Grid snap OFF**: conveyor keeps the drawn curve/spline as-is
+- **Grid snap ON**: conveyor is aligned to grid segments (straight runs along grid lines)
+- In both cases: endpoint snaps to a port if within snap radius
 
 ---
 
@@ -67,7 +67,8 @@ Tap to place machines. Placement preview shown as ghost while hovering.
 - Default: freeform
 - Hold pen button → shows rotation handle
 - Drag handle to rotate
-- With snap enabled: snaps to configured increment
+- Minimum increment: **5 degrees** (always enforced)
+- With rotation snap enabled: snaps to configured increment (45°, 15°, etc.) but never less than 5°
 
 ---
 

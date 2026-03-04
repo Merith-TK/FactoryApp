@@ -34,6 +34,10 @@ Think: **engineering notebook meets Satisfactory.**
 - **Secondary:** Android (non-S Pen, touch fallback buttons)
 - **Future:** Desktop parity possible via Godot's export system
 
+## View / Perspective
+
+**Starting with 2D top-down.** Revisit isometric or 3D once core loop is proven. Top-down is the safe default for stylus clarity and performance.
+
 ---
 
 ## High-Level Feature List
