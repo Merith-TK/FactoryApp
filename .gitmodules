@@ -1,0 +1,3 @@
+[submodule "game/addons/GodotTogether"]
+	path = game/addons/GodotTogether
+	url = https://github.com/Wolfyxon/GodotTogether
