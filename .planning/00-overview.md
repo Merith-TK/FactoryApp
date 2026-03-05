@@ -80,6 +80,8 @@ Think: **engineering notebook meets Satisfactory.**
 - [07-milestones.md](./07-milestones.md) — Roadmap and milestone checklist
 - [08-player-drone.md](./08-player-drone.md) — Construction drone system, inventory, tasks, hazards
 - [09-gameplay-loop.md](./09-gameplay-loop.md) — Resource flow, missions, tech tree, progression pacing
+- [10-world-generation.md](./10-world-generation.md) — Two world types (chunk-based vs pre-gen), performance comparison
+- [11-base-content.md](./11-base-content.md) — Machine catalog, production chain, base items
 - [02-input-system.md](./02-input-system.md) — Stylus / S Pen input handling
 - [03-ux-design.md](./03-ux-design.md) — Interaction model, modes, UI approach
 - [04-simulation.md](./04-simulation.md) — Core simulation architecture

@@ -2,16 +2,21 @@
 
 ## Engine — Godot 4
 
-**Decision: Godot 4**
+**Decision: Godot 4, pure GDScript. No .NET / C#. No GDExtension linked repos.**
 
 ### Why Godot
 
 - Native Android export (no Android Studio required for basic deployment)
 - Stylus input comes through standard `InputEvent` system — no Samsung SDK needed for basic button detection
 - Node-based tree maps naturally to factory graphs (machines as nodes, conveyors as edges)
-- GDExtension allows binding Go or C++ for performance-critical simulation
-- Moddable via `.pck` files and runtime script loading
+- Moddable via `.pck` files and runtime Lua script loading
 - Free, open source, no royalty
+
+### Constraints
+
+- **No .NET / C#** — pure GDScript only. Keeps the project dependency-free and Android build simple.
+- **No GDExtension linked repos** — no external native libraries that require a separate build step or git submodule. Drop-in precompiled addons (`.gdextension` binaries) are acceptable if they ship as a self-contained asset.
+- **No Go simulation core** — original plan to port simulation to Go via GDExtension is dropped. GDScript handles everything. If performance becomes a real issue it will be revisited, but not planned for.
 
 ### Stylus in Godot
 
@@ -29,20 +34,22 @@ Advanced remote features (Air Actions, Bluetooth gestures) require the Samsung S
 
 ---
 
-## Language — GDScript (primary) + Go (optional simulation core)
+## Language — GDScript (only)
 
-### GDScript
+- All game logic, UI, input handling, simulation, and rendering in GDScript
+- No C#, no Go, no C++
+- Fast iteration, fully portable to Android without extra build steps
 
-- Used for: UI, input handling, Godot scene logic, rendering
-- Fast iteration, built-in to Godot
+---
 
-### Go (optional, future)
+## Modding — Lua (via LuaAPI addon)
 
-- Used for: deterministic simulation core if GDScript performance is insufficient
-- Integrated via **GDExtension** (Go → shared library → Godot)
-- Mod system backend could also be Go-based
+Script mods use **Lua 5.4**, embedded into Godot via the **[LuaAPI](https://github.com/WeaselGames/godot_luaAPI) GDExtension addon**.
 
-**Start in GDScript. Port simulation to Go if needed.**
+- LuaAPI ships as a precompiled `.gdextension` binary — drop into `addons/` folder, no build step, no submodule
+- Lua scripts run in a **sandboxed environment** — only the API surface explicitly exposed by the game is accessible
+- Mods cannot access the filesystem, network, or Godot internals directly
+- See [06-modding.md](./06-modding.md) for full Lua mod API design
 
 ---
 
@@ -74,11 +81,11 @@ Two evaluated options:
 | Layer | Technology |
 |---|---|
 | Engine | Godot 4 |
-| Game logic | GDScript |
-| Simulation core (future) | Go via GDExtension |
+| Game logic | GDScript (only) |
+| Mod scripting | Lua 5.4 via LuaAPI addon |
 | Android export | Godot native |
 | S Pen button (basic) | Godot InputEvent |
 | S Pen remote (advanced) | Samsung S Pen Remote SDK (deferred) |
 | Local save | JSON file |
 | Server backend | Go + WebSocket + PostgreSQL |
-| Mod format | JSON + GDScript / `.pck` |
+| Mod format | JSON (data) + Lua (scripts) + `.pck` (assets) |

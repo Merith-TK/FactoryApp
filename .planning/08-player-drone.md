@@ -86,7 +86,7 @@ Connection radius is a separate (larger) value than build range — you don't ne
 
 ## Task System
 
-Drones operate via a **task queue**. When you assign a construction job (e.g., place a smelter at location X), the drone:
+Drones operate via a **task queue**. When you assign a construction job (e.g., place a machine at location X), the drone:
 
 1. Pathfinds to needed resources (or the game's resource depot)
 2. Picks up required materials
@@ -95,6 +95,18 @@ Drones operate via a **task queue**. When you assign a construction job (e.g., p
 5. Returns or picks up next task
 
 You don't manually drive the drone. You assign what needs to happen — the drone handles travel autonomously.
+
+### Pathfinding — NavMesh
+
+Drone navigation uses a **NavigationAgent2D / NavMesh** approach (Godot 4's built-in 2D navigation):
+
+- The world has a NavigationRegion2D covering traversable terrain
+- **Hazard zones** are registered as NavigationObstacle2D blockers — drone routes around them automatically
+- Placed machines also contribute obstruction polygons so the drone doesn’t walk through buildings
+- When a hazard is cleared, its obstacle is removed and the navmesh updates
+- Navmesh is **freeform** — drone takes smooth paths, not forced to grid cells
+
+Godot handles all pathfinding recalculation internally. The drone just requests a path to a target position.
 
 ### Task Assignment via Stylus
 

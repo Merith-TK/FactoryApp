@@ -9,14 +9,18 @@ Prove the core loop is fun and working.
 - [ ] Software toggle button (fallback)
 - [ ] Canvas panning and zooming
 - [ ] Construction drone entity on the map (placeholder sprite)
+- [ ] NavMesh world navigation — drone pathfinds around obstacles
 - [ ] Drone auto-pathfinds to assigned task location
 - [ ] Drone inventory (carries items)
-- [ ] Place a machine (placeholder sprite) with rotation — drone must be in range
+- [ ] **World gen Type B (pre-gen)** — seed places resource deposits and hazards upfront
+- [ ] Place a Miner on a resource deposit (placeholder sprite)
+- [ ] Place a Shelter (placeholder sprite) with rotation — drone must be in range
 - [ ] Draw a conveyor line between two machines
 - [ ] Basic simulation tick (items move through conveyors)
+- [ ] Coal Generator + basic power grid
 - [ ] Local save / load (JSON)
 
-**Definition of done:** Can assign a drone to construct two machines, connect them with a conveyor, watch items flow, and save/reload the state.
+**Definition of done:** Drone constructs a Miner and Shelter, connects them with a conveyor, powers the setup with a Coal Generator, and watches iron ingots flow. Save and reload the state.
 
 ---
 
@@ -48,9 +52,11 @@ Prove the core loop is fun and working.
 
 - [ ] Data mod loading from `user://mods/`
 - [ ] `.pck` mod support
+- [ ] **Lua scripting** — LuaAPI addon integrated, `on_tick` / `on_place` / `on_remove` hooks working
 - [ ] **Mission system** — game-driven production targets, mission definitions in JSON
-- [ ] **HUB milestone tech tree** — linear tier unlocks gated by mission completion
+- [ ] **HUB milestone tech tree** — linear tier unlocks gated by mission completion, all 5 machine tiers locked behind tiers
 - [ ] **Research Lab** — branching optional research, resource-fed, drone/logistics upgrades
+- [ ] **World gen Type A (chunk-based)** — implement and performance-compare against Type B
 - [ ] Multiple save slots
 - [ ] Settings panel (snap options, tick rate, etc.)
 - [ ] Proper sprites and audio

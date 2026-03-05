@@ -29,8 +29,8 @@ Explore map
 ### World Generation
 
 - World is **seed-based procedural generation**
+- Two world types planned for prototype (performance comparison) — see [10-world-generation.md](./10-world-generation.md)
 - Resource placement, hazard zones, and terrain are all seed-derived
-- **Open question (deferred):** Whether world tiles are saved to disk, or only buildings/player state are saved and terrain is re-generated from seed on load. Both are valid — decide at save system implementation time.
 
 ### Harvesting
 
@@ -43,21 +43,23 @@ Explore map
 
 ## Production Chain
 
-Resources flow through a chain of processing machines:
+Resources flow through a chain of processing machines. See [11-base-content.md](./11-base-content.md) for full machine and recipe definitions.
 
 ```
 [Deposit]
-   ↓ harvester
-[Raw Resource]  (iron ore, copper ore, coal, etc.)
-   ↓ smelter / processor
-[Basic Component]  (iron ingot, copper ingot, etc.)
-   ↓ assembler / fabricator
-[Intermediate]  (iron plate, wire, circuit board, etc.)
-   ↓ advanced assembler
-[Advanced Component]  (motor, computer, etc.)
-   ↓ ...
-[Mission Target Item]
+   ↓  Miner          (unlock: Tier 1)
+[Raw Ore]              iron ore, copper ore, coal, ...
+   ↓  Shelter        (unlock: Tier 1)
+[Ingots]               iron ingot, copper ingot, glass, ...
+   ↓  Constructor    (unlock: Tier 2)
+[Basic Materials]      iron plate, copper wire, iron rod, ...
+   ↓  Assembler      (unlock: Tier 3)
+[Advanced Materials]   motor, circuit board, reinforced frame, ...
+   ↓  Factory        (unlock: Tier 4-5)
+[Experimental]         computer, AI controller, ...
 ```
+
+**Tech lock rule:** Ore deposits are visible on the map from world generation. You cannot process any ore until the corresponding machine tier is unlocked via the HUB.
 
 Complexity is **medium** — bottlenecks matter and throughput tuning is rewarding, but the game does not punish inefficiency harshly. You can always expand.
 
@@ -100,11 +102,11 @@ Two parallel tracks, inspired by Satisfactory's **HUB** (milestones) and **MAM**
 
 Example HUB progression:
 ```
-Tier 1: Basic smelting, basic conveyors, basic power
-Tier 2: Multi-input assemblers, faster conveyors
-Tier 3: Advanced processing, power grid upgrades
-Tier 4: Automated logistics, second drone unlock
-Tier 5: End-game components, final mission target
+Tier 1: Miner + Shelter (ore → ingots) + Coal Generator + basic conveyors + basic power
+Tier 2: Constructor (ingots → basic materials) + faster conveyors
+Tier 3: Assembler (basic → advanced materials) + power grid upgrades
+Tier 4: Factory (advanced → experimental) + second drone unlock
+Tier 5: End-game components + final mission target
 ```
 
 ### Track 2 — Research Lab (Branching, Optional)
@@ -146,7 +148,8 @@ After the final HUB milestone:
 ## Deferred / TBD
 
 - Narrative/story layer integrated into missions
+- Specific mission list (deferred until gameplay POC proves loop is fun)
 - Challenge missions (post-endgame optional targets)
-- World tile persistence vs seed-regeneration decision
-- Exact tech tree item list and tier requirements
+- Exact tech tree item list and tier requirements beyond the 5 core machines
 - Research Lab cost curves
+- Art/naming pass on machine names ("Shelter" is a working name)
