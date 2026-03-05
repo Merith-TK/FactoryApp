@@ -43,36 +43,36 @@ func _draw() -> void:
 	# -- Sub-grid (only visible when zoomed in enough to avoid noise) --
 	if cam_zoom >= 1.0:
 		var sub_size := CELL_SIZE / SUBGRID_DIV
-		var sx := floorf(left / sub_size) * sub_size
-		var sy := floorf(top / sub_size) * sub_size
+		var sub_sx := floorf(left / sub_size) * sub_size
+		var sub_sy := floorf(top / sub_size) * sub_size
 
-		var x := sx
-		while x <= right:
-			if not _is_on_major(x):
-				draw_line(Vector2(x, top), Vector2(x, bottom), SUB_COLOR, lw)
-			x += sub_size
+		var sx := sub_sx
+		while sx <= right:
+			if not _is_on_major(sx):
+				draw_line(Vector2(sx, top), Vector2(sx, bottom), SUB_COLOR, lw)
+			sx += sub_size
 
-		var y := sy
-		while y <= bottom:
-			if not _is_on_major(y):
-				draw_line(Vector2(left, y), Vector2(right, y), SUB_COLOR, lw)
-			y += sub_size
+		var sy := sub_sy
+		while sy <= bottom:
+			if not _is_on_major(sy):
+				draw_line(Vector2(left, sy), Vector2(right, sy), SUB_COLOR, lw)
+			sy += sub_size
 
 	# -- Major grid --
 	var start_x := floorf(left / CELL_SIZE) * CELL_SIZE
 	var start_y := floorf(top / CELL_SIZE) * CELL_SIZE
 
-	var x := start_x
-	while x <= right:
-		var color := AXIS_COLOR if is_zero_approx(x) else LINE_COLOR
-		draw_line(Vector2(x, top), Vector2(x, bottom), color, lw)
-		x += CELL_SIZE
+	var gx := start_x
+	while gx <= right:
+		var color := AXIS_COLOR if is_zero_approx(gx) else LINE_COLOR
+		draw_line(Vector2(gx, top), Vector2(gx, bottom), color, lw)
+		gx += CELL_SIZE
 
-	var y := start_y
-	while y <= bottom:
-		var color := AXIS_COLOR if is_zero_approx(y) else LINE_COLOR
-		draw_line(Vector2(left, y), Vector2(right, y), color, lw)
-		y += CELL_SIZE
+	var gy := start_y
+	while gy <= bottom:
+		var color := AXIS_COLOR if is_zero_approx(gy) else LINE_COLOR
+		draw_line(Vector2(left, gy), Vector2(right, gy), color, lw)
+		gy += CELL_SIZE
 
 
 func _is_on_major(value: float) -> bool:

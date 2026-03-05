@@ -61,15 +61,14 @@ func _input(event: InputEvent) -> void:
 
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed and not pan_modifier_held:
+				print("[InputManager] primary_pressed at ", pos)
 				primary_pressed.emit(pos)
-				get_viewport().set_input_as_handled()
 			elif not event.pressed:
 				primary_released.emit(pos)
 
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.pressed and not pan_modifier_held:
 				secondary_pressed.emit(pos)
-				get_viewport().set_input_as_handled()
 			elif not event.pressed:
 				secondary_released.emit(pos)
 
