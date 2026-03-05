@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" uid="uid://cgt0afy3qm7f" path="res://scripts/camera/game_camera.gd" id="1_cam"]
 [ext_resource type="Script" path="res://scripts/world/world_grid.gd" id="2_grid"]
+[ext_resource type="PackedScene" path="res://scenes/entities/drone.tscn" id="3_drone"]
+[ext_resource type="Script" path="res://scripts/ui/pen_button.gd" id="4_penbtn"]
 
 [node name="Main" type="Node2D" unique_id=2136915658]
 
@@ -13,4 +15,19 @@ script = ExtResource("1_cam")
 [node name="WorldGrid" type="Node2D" parent="World"]
 script = ExtResource("2_grid")
 
+[node name="Drone" parent="World" instance=ExtResource("3_drone")]
+position = Vector2(0, 0)
+
 [node name="UI" type="CanvasLayer" parent="." unique_id=1458536664]
+
+[node name="PenButton" type="Button" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -60.0
+offset_right = -16.0
+offset_bottom = -16.0
+text = "✦ Pen"
+script = ExtResource("4_penbtn")
