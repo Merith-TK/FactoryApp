@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://b5ww8fca0318y"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" uid="uid://cgt0afy3qm7f" path="res://scripts/camera/game_camera.gd" id="1_cam"]
+[ext_resource type="Script" path="res://scripts/world/world_grid.gd" id="2_grid"]
 
 [node name="Main" type="Node2D" unique_id=2136915658]
 
@@ -8,5 +9,8 @@
 script = ExtResource("1_cam")
 
 [node name="World" type="Node2D" parent="." unique_id=1229707742]
+
+[node name="WorldGrid" type="Node2D" parent="World"]
+script = ExtResource("2_grid")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1458536664]
