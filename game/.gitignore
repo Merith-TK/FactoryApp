@@ -1,0 +1,15 @@
+# Godot 4 .gitignore
+
+# Import cache and generated files
+.godot/
+
+# Android export keys
+*.keystore
+
+# Export presets (contains personal paths)
+export_presets.cfg
+
+# Mono/C# auto-generated files (not used, but just in case)
+.mono/
+data_*/
+mono_crash.*.json
