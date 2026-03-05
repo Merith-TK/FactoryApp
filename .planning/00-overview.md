@@ -63,9 +63,9 @@ Think: **engineering notebook meets Satisfactory.**
 | Tech tree — HUB milestones (linear, main path) | Planning |
 | Tech tree — Research Lab (branching, optional) | Planning |
 | Power grid (generators, lines, machines) | Planning |
-| Local save (JSON) | Planning |
+| Local save (SQLite) | Planning |
 | Server save (authoritative backend) | Planning |
-| Mod system (JSON + scripts) | Planning |
+| Mod system (JSON + Lua + `.pck`) | Planning |
 
 ---
 
@@ -82,8 +82,3 @@ Think: **engineering notebook meets Satisfactory.**
 - [09-gameplay-loop.md](./09-gameplay-loop.md) — Resource flow, missions, tech tree, progression pacing
 - [10-world-generation.md](./10-world-generation.md) — Two world types (chunk-based vs pre-gen), performance comparison
 - [11-base-content.md](./11-base-content.md) — Machine catalog, production chain, base items
-- [02-input-system.md](./02-input-system.md) — Stylus / S Pen input handling
-- [03-ux-design.md](./03-ux-design.md) — Interaction model, modes, UI approach
-- [04-simulation.md](./04-simulation.md) — Core simulation architecture
-- [05-save-system.md](./05-save-system.md) — Local and server save design
-- [06-modding.md](./06-modding.md) — Mod system design

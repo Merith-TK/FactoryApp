@@ -18,7 +18,7 @@ Prove the core loop is fun and working.
 - [ ] Draw a conveyor line between two machines
 - [ ] Basic simulation tick (items move through conveyors)
 - [ ] Coal Generator + basic power grid
-- [ ] Local save / load (JSON)
+- [ ] Local save / load (SQLite)
 
 **Definition of done:** Drone constructs a Miner and Shelter, connects them with a conveyor, powers the setup with a Coal Generator, and watches iron ingots flow. Save and reload the state.
 

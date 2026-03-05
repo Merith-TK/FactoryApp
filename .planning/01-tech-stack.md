@@ -86,6 +86,6 @@ Two evaluated options:
 | Android export | Godot native |
 | S Pen button (basic) | Godot InputEvent |
 | S Pen remote (advanced) | Samsung S Pen Remote SDK (deferred) |
-| Local save | JSON file |
+| Local save | SQLite via godot-sqlite addon |
 | Server backend | Go + WebSocket + PostgreSQL |
 | Mod format | JSON (data) + Lua (scripts) + `.pck` (assets) |
