@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="FactoryApp"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+InputManager="*res://scripts/autoload/input_manager.gd"
 
 [physics]
 
